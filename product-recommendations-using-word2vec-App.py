@@ -1024,10 +1024,11 @@ def similar_products(v, n=6):
     new_ms = []
     for j in ms:
         product_id = j[0]
-        product_name = dictionary[product_id][0]
-        similarity_score = j[1]
-        pair = (product_name, similarity_score)
-        new_ms.append(pair)
+        if product_id in dictionary:
+            product_name = dictionary[product_id][0]
+            similarity_score = j[1]
+            pair = (product_name, similarity_score)
+            new_ms.append(pair)
 
     return new_ms
 
@@ -1038,9 +1039,12 @@ st.write("Selected Product ID:", selected_product_id)
 
 ok = st.button("Recommend Products")
 if ok:
-    similars = similar_products(model.wv[selected_product_id])
+    if selected_product_id in model.wv:
+        similars = similar_products(model.wv[selected_product_id])
 
-    # Show the top recommended products and their similarity scores
-    st.subheader("Top Recommended Products:")
-    for product_name, similarity_score in similars:
-        st.write(f"{product_name} (Similarity Score: {similarity_score:.2f})")
+        # Show the top recommended products and their similarity scores
+        st.subheader("Top Recommended Products:")
+        for product_name, similarity_score in similars:
+            st.write(f"{product_name} (Similarity Score: {similarity_score:.2f})")
+    else:
+        st.write("Selected product is not present in the Word2Vec model.")
