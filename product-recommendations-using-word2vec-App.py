@@ -1017,7 +1017,6 @@ dictionary  = {'10002': ['INFLATABLE POLITICAL GLOBE '],
  '22102': ['MIRROR MOSAIC T-LIGHT HOLDER ']}
 
 def similar_products(v, n=6):
-
     # extract most similar products for the input vector
     ms = model.wv.most_similar([v], topn=n + 1)[1:]
 
@@ -1031,16 +1030,17 @@ def similar_products(v, n=6):
         new_ms.append(pair)
 
     return new_ms
-        
-# Swap keys and values using dictionary comprehension
-swapped_dict = {value[0]: key for key, value in dictionary.items()}
 
-product = st.selectbox("Product", dictionary.values())
-st.write(product)
-code_product = swapped_dict[product[0]]
-st.write(code_product)
+product_names = list(dictionary.values())
+product = st.selectbox("Product", product_names)
+selected_product_id = list(dictionary.keys())[list(dictionary.values()).index(product)]
+st.write("Selected Product ID:", selected_product_id)
+
 ok = st.button("Recommend Products")
 if ok:
-    similars = similar_products(model.wv[code_product])
-    
-    st.subheader(similars[0])
+    similars = similar_products(model.wv[selected_product_id])
+
+    # Show the top recommended products and their similarity scores
+    st.subheader("Top Recommended Products:")
+    for product_name, similarity_score in similars:
+        st.write(f"{product_name} (Similarity Score: {similarity_score:.2f})")
