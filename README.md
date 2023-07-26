@@ -25,3 +25,6 @@ We welcome contributions from the open-source community! If you have ideas for i
 ## Get Started
 
 To get started, check out the documentation and code samples in the repository. You will find step-by-step guides, examples, and explanations to help you understand and build upon the recommendation system using Word2Vec.
+
+## This is app URL
+https://appuct-recommendations-using-word2vec-45u2kkqfnruxtenosu3iuc.streamlit.app/
