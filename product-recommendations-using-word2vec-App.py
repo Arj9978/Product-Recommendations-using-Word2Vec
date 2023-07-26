@@ -1038,10 +1038,9 @@ swapped_dict = {value[0]: key for key, value in dictionary.items()}
 product = st.selectbox("Product", dictionary.values())
 st.write(product)
 code_product = swapped_dict[product[0]]
-code_product = str(code_product)
 st.write(code_product)
 ok = st.button("Recommend Products")
 if ok:
     similars = similar_products(model.wv[code_product])
     
-    st.subheader(similars)
+    st.subheader(similars[0])
