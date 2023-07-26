@@ -1037,7 +1037,7 @@ swapped_dict = {value[0]: key for key, value in dictionary.items()}
 
 product = st.selectbox("Product", dictionary.values())
 st.write(product)
-code_product = swapped_dict[product.value()]
+code_product = swapped_dict[product[0]]
 st.write(code_product)
 ok = st.button("Recommend Products")
 if ok:
