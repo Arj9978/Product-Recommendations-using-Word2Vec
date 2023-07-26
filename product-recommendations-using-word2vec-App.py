@@ -1025,7 +1025,7 @@ def similar_products(v, n=6):
     new_ms = []
     for j in ms:
         product_id = j[0]
-        product_name = products_dict[product_id][0]
+        product_name = dictionary[product_id][0]
         similarity_score = j[1]
         pair = (product_name, similarity_score)
         new_ms.append(pair)
