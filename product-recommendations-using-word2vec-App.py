@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import joblib
+import gensim
 
 from utils import columns
 from gensim.models import Word2Vec
